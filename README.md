@@ -2,8 +2,9 @@
 
 Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)   
 HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
-Data: [🤗 RefCOCOg-2K](https://huggingface.co/datasets/Ricky06662/refCOCOg_2k_840)   [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840)   [🤗 ReasonSeg-Test](https://huggingface.co/datasets/Ricky06662/ReasonSeg_test)  [🤗 ReasonSeg-Val](https://huggingface.co/datasets/Ricky06662/ReasonSeg_val)    
-Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)   [🤗 Seg-Zero-7B-Best-on-ReasonSeg-Test](https://huggingface.co/Ricky06662/Seg-Zero-7B-Best-on-ReasonSegTest)
+Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840) 
+[🤗 VisionReasoner-MultiObjects](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
+Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)  
 
 Overview of Seg-Zero:
 
@@ -24,9 +25,15 @@ Seg-Zero demonstrates following features:
 
 ## News
 
+[May 17th, 2025] 🔥 We release [VisionReasoner](https://github.com/dvlab-research/VisionReasoner)! VisionReasoner supports multi-objects and multi-tasks.  
 [March 11th, 2025] 🔥 [Paper](https://arxiv.org/abs/2503.06520) is coming!   
 [March 8th, 2025] 🔥 Seg-Zero is coming! We have released the code and training data.
 
+## !!! Important !!!
+We made a major update in May. We now support multi-object segmentation. If you'd like to use the previous single-object segmentation, please use the following command to revert to the old version.  
+```bash
+git reset --hard 77f9ea5887ec7e6abf398ed3cb483c65631c82b7
+```
 
 ## Contents
 - [Model](#model)
@@ -35,6 +42,7 @@ Seg-Zero demonstrates following features:
 - [Inference](#inference)
 - [Evaluation](#evaluation)
 - [Training](#training)
+- [Build Your Data](#build-your-own-training-data-optional)
 - [Citation](#citation)
 - [Acknowledgement](#acknowledgement)
 
@@ -60,57 +68,58 @@ Seg-Zero employs a decoupled architecture, including a reasoning model and segme
 ```bash
 git clone https://github.com/dvlab-research/Seg-Zero.git
 cd Seg-Zero
-conda create -n seg_zero python=3.11
-conda activate seg_zero
-pip install torch==2.5.1 torchvision==0.20.1 torchaudio==2.5.1
+conda create -n visionreasoner python=3.12
+conda activate visionreasoner
+pip install torch==2.6.0 torchvision==0.21.0
 pip install -e .
-pip install sam2
-pip install matplotlib
 ```
 
 
 ## Inference
 ```bash
-python inference_scripts/infer.py
+python inference_scripts/infer_multi_object.py
 ```
 The default question is 
-> "the unusal object in the image."
+> "What can I have if I'm thirsty?"
 
 You will get the thinking process in command line, like:
 
-> "The image shows a bicycle with wheels that have been replaced with large, round objects resembling watermelon slices. The unusual aspect of the image is the substitution of the bicycle wheels with these watermelon-like objects, which is not a typical feature of a bicycle. The rest of the bicycle appears to be a standard design, but the wheels are the focal point of the image."
+> "The question asks for items that can be consumed if one is thirsty. In the image, there are two glasses that appear to contain beverages, which are the most likely candidates for something to drink. The other items, such as the salad, fruit platter, and sandwich, are not drinks and are not suitable for quenching thirst."
 
 And the mask will be presented in **inference_scripts** folder. 
 
 <div align=center>
-<img width="98%" src="assets/test_output.png"/>
+<img width="98%" src="assets/test_output_multiobject.png"/>
 </div>
 
 You can also provide your own image_path and text by:
 ```bash
-python inference_scripts/infer.py --image_path "your_image_path" --text "your question text"
+python inference_scripts/infer_multi_object.py --image_path "your_image_path" --text "your question text"
 ```
 
 ## Evaluation  
 
+Evaluation Data: [🤗 ReasonSeg-Test](https://huggingface.co/datasets/Ricky06662/ReasonSeg_test)  [🤗 ReasonSeg-Val](https://huggingface.co/datasets/Ricky06662/ReasonSeg_val)   
+
 ```bash
-bash evaluation_scripts/eval_reasonseg.sh
+bash evaluation_scripts/eval_reasonseg_visionreasoner.sh
 ```  
-Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see the gIoU and cIoU in your command line.  
+Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see the gIoU in your command line.  
 <div align=center>
-<img width="98%" src="assets/evaluation_results.png"/>
-</div>    
+<img width="98%" src="assets/val_results.png"/>
+</div> 
 
 > [!NOTE]
-> The best performance on different datasets is achieved using different checkpoints. We release the best performing checkpoint on ReasonSeg-test, and the best results on ReasonSeg-val is using another checkpoint.    
+> We recommand you to [VisionReasoner](https://github.com/dvlab-research/VisionReasoner) for evaluation on more tasks and more benchmarks.
 
 ## Training
 
 ### 1. GRPO Training
 
 ```bash
-bash training_scripts/run_qwen2_5_3b_refCOCOg.sh
+bash training_scripts/run_visionreasoner_7b.sh
 ```
+
 You can try change the following hyper-parameters if you have a large GPU memory.
 ```bash
 worker.actor.micro_batch_size_per_device_for_update=4 or 8 or 16 \
@@ -132,6 +141,9 @@ python3 training_scripts/model_merger.py --local_dir [path_to_your_actor_checkpo
 > [!TIP]
 > If you encounter issues with connecting to Hugging Face, consider using `export HF_ENDPOINT=https://hf-mirror.com`.
 
+
+## Build Your Own Training Data (Optional)
+Please refer to our training data preparation [toturial](prepare_dataset/training_data_prepare_toturial.ipynb).
 
 ## The GRPO Algorithm
 

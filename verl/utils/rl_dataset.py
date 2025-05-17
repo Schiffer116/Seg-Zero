@@ -89,12 +89,22 @@ class RLHFDataset(Dataset):
 
         self.dataset = load_dataset(data_path)['train']
         # self.dataset = load_from_disk(data_path)['train'] # you can load from disk if you have already downloaded the dataset
-                
-        self.user_prompt = "<image>" \
-            "Please find '{Question}' with bbox and points." \
-            "Compare the difference between objects and find the most closely matched one." \
+        
+        ################ Old Version ################
+        # self.user_prompt = "<image>" \
+        #     "Please find '{Question}' with bbox and points." \
+        #     "Compare the difference between objects and find the most closely matched one." \
+        #     "Output the thinking process in <think> </think> and final answer in <answer> </answer> tags." \
+        #     "Output the one bbox and points of two largest inscribed circles inside the interested object in JSON format." \
+        #     "i.e., <think> thinking process here </think>" \
+        #     "<answer>{Answer}</answer>"
+        ################ Old Version ################
+        
+        self.user_prompt = "<image>\n" \
+            "Please find \"{Question}\" with bboxs and points." \
+            "Compare the difference between object(s) and find the most closely matched object(s)." \
             "Output the thinking process in <think> </think> and final answer in <answer> </answer> tags." \
-            "Output the one bbox and points of two largest inscribed circles inside the interested object in JSON format." \
+            "Output the bbox(es) and point(s) inside the interested object(s) in JSON format." \
             "i.e., <think> thinking process here </think>" \
             "<answer>{Answer}</answer>"
 
@@ -106,10 +116,21 @@ class RLHFDataset(Dataset):
         Note that we also return the raw_input_ids so that it can be combined with other chat template
         """
         row_dict = self.dataset[index]
+        
+        ################ Old Version ################
+        # messages = [
+        #     {"role": "system", "content": self.system_prompt},
+        #     {"role": "user", "content": self.user_prompt.format(Question=row_dict["problem"].lower().strip("."),
+        #                                                         Answer="{'bbox': [10,100,200,210], 'points_1': [30,110], 'points_2': [35,180]}")},
+        # ]
+        ################ Old Version ################
+        
         messages = [
             {"role": "system", "content": self.system_prompt},
-            {"role": "user", "content": self.user_prompt.format(Question=row_dict["problem"].lower().strip("."),
-                                                                Answer="{'bbox': [10,100,200,210], 'points_1': [30,110], 'points_2': [35,180]}")},
+            {"role": "user", "content": self.user_prompt.format(
+                Question=row_dict["problem"].lower().strip("."),
+                Answer="[{\"bbox_2d\": [10,100,200,210], \"point_2d\": [30,110]}, {\"bbox_2d\": [225,296,706,786], \"point_2d\": [302,410]}]"
+            )},
         ]
         prompt = self.tokenizer.apply_chat_template(messages, add_generation_prompt=True, tokenize=False)
 

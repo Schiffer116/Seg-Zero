@@ -18,8 +18,6 @@ def calculate_metrics(output_dir):
         return
     
     # for accumulating all data
-    total_intersection = 0
-    total_union = 0
     all_ious = []
     
     # read and process all files
@@ -39,18 +37,13 @@ def calculate_metrics(output_dir):
                 'iou': iou
             })
             
-            # accumulate total intersection and union
-            total_intersection += intersection
-            total_union += union
     
     # calculate gIoU
     gIoU = np.mean([item['iou'] for item in all_ious])
     # calculate cIoU
-    cIoU = total_intersection / total_union if total_union > 0 else 0
     
     # print the results
     print(f"gIoU (average of per image IoU): {gIoU:.4f}")
-    print(f"cIoU (total_intersection / total_union): {cIoU:.4f}")
     
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 accelerate
 codetiming
 datasets
-flash-attn==2.6.3
+flash-attn==2.7.4.post1
 liger-kernel
 mathruler
 numpy
@@ -12,8 +12,12 @@ pillow
 pyarrow>=15.0.0
 pylatexenc
 qwen-vl-utils
+scipy
+matplotlib
+ipykernel
+sam2
 ray
 tensordict
-transformers==4.49.0
-vllm==0.7.3
+transformers==4.51.3
+vllm==0.8.5.post1
 wandb

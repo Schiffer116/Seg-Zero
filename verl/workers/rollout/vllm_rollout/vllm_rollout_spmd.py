@@ -79,6 +79,7 @@ class vLLMRollout(BaseRollout):
             disable_custom_all_reduce=True,
             disable_log_stats=config.disable_log_stats,
             enable_chunked_prefill=config.enable_chunked_prefill,
+            seed=0,
             **vllm_init_kwargs,
         )
 
