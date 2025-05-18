@@ -1,9 +1,12 @@
 # Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement
 
+The repo is the official implement of "Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement".   
+The repo is also the official training code of "VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning"
+
 Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)   
 HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
 Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840) 
-[🤗 VisionReasoner-MultiObjects](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
+[🤗 VisionReasoner-MultiObjects-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
 Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)  
 
 Overview of Seg-Zero:
@@ -110,7 +113,10 @@ Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see
 </div> 
 
 > [!NOTE]
-> We recommand you to [VisionReasoner](https://github.com/dvlab-research/VisionReasoner) for evaluation on more tasks and more benchmarks.
+> Results in VisionReasoner are evaluated within one checkpoint.  We recommand you to [VisionReasoner](https://github.com/dvlab-research/VisionReasoner) for evaluation on more tasks and more benchmarks.
+
+> [!NOTE]
+> However, in Seg-Zero, the best results on different benchmark are evaluated using different checkpoint. We just evaluate all available checkpoints and write down their value.  For someone who may care about the performance, we suggest you can evaluate all benchmark within one model and compare the value (of our released checkpoint) in your environment.
 
 ## Training
 

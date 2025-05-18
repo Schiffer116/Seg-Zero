@@ -16,6 +16,8 @@ scipy
 matplotlib
 ipykernel
 sam2
+pycocotools
+scikit-image
 ray
 tensordict
 transformers==4.51.3

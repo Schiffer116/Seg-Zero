@@ -177,3 +177,4 @@ wandb/
 workdir
 reasonseg_eval_results
 tmp_model_upload
+visionmanus_workdir/

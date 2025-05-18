@@ -23,4 +23,4 @@ python3 -m verl.trainer.main \
     trainer.experiment_name=${RUN_NAME} \
     trainer.n_gpus_per_node=8 \
     trainer.total_episodes=1 \
-    trainer.save_checkpoint_path=/gpfs/yuqiliu/vision_zero_workdir/${RUN_NAME}
+    trainer.save_checkpoint_path=visionmanus_workdir/${RUN_NAME}
