@@ -1,7 +1,7 @@
 # Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement
 
-The repo is the official implement of "Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement".   
-The repo is also the official training code of "VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning"
+The repo is the official implement of **"Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement"**.   
+The repo is also the official training code of **"VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning"**.  
 
 Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)   
 HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
@@ -32,7 +32,7 @@ Seg-Zero demonstrates following features:
 [March 11th, 2025] 🔥 [Paper](https://arxiv.org/abs/2503.06520) is coming!   
 [March 8th, 2025] 🔥 Seg-Zero is coming! We have released the code and training data.
 
-## !!! Important !!!
+## !!! Attention !!!
 We made a major update in May. We now support multi-object segmentation. If you'd like to use the previous single-object segmentation, please use the following command to revert to the old version.  
 ```bash
 git reset --hard 77f9ea5887ec7e6abf398ed3cb483c65631c82b7
@@ -79,6 +79,18 @@ pip install -e .
 
 
 ## Inference
+Download model using the following scripts:
+```bash
+mkdir model
+cd model
+git lfs install
+git clone https://huggingface.co/Ricky06662/VisionReasoner-7B
+```
+
+> [!TIP]
+> If you encounter issues with connecting to Hugging Face, consider using `export HF_ENDPOINT=https://hf-mirror.com`.
+
+Then run inference using: 
 ```bash
 python inference_scripts/infer_multi_object.py
 ```
@@ -121,7 +133,21 @@ Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see
 ## Training
 
 ### 1. GRPO Training
+Training Data: [🤗 MultiObject-1K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_1k_840)  [🤗 MultiObject-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)   
+Download dataset using this script: 
+```bash
+python training_scripts/download_dataset.py
+```
 
+Download model using the following scripts:
+```bash
+mkdir model
+cd model
+git lfs install
+git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
+```
+
+Start training using this script:
 ```bash
 bash training_scripts/run_visionreasoner_7b.sh
 ```
@@ -143,9 +169,6 @@ worker.rollout.n=[your number between 4-32]
 ```bash
 python3 training_scripts/model_merger.py --local_dir [path_to_your_actor_checkpoint]
 ```
-
-> [!TIP]
-> If you encounter issues with connecting to Hugging Face, consider using `export HF_ENDPOINT=https://hf-mirror.com`.
 
 
 ## Build Your Own Training Data (Optional)

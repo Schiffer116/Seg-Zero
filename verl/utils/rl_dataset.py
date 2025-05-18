@@ -87,8 +87,8 @@ class RLHFDataset(Dataset):
         self.max_pixels = max_pixels
         self.min_pixels = min_pixels
 
-        self.dataset = load_dataset(data_path)['train']
-        # self.dataset = load_from_disk(data_path)['train'] # you can load from disk if you have already downloaded the dataset
+        #self.dataset = load_dataset(data_path)['train']
+        self.dataset = load_from_disk(data_path)['train'] # you can load from disk if you have already downloaded the dataset
         
         ################ Old Version ################
         # self.user_prompt = "<image>" \

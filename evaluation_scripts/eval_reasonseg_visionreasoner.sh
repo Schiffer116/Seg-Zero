@@ -1,6 +1,6 @@
 #!/bin/bash
 
-REASONING_MODEL_PATH="Ricky06662/VisionReasoner-7B"
+REASONING_MODEL_PATH="model/VisionReasoner-7B"
 
 SEGMENTATION_MODEL_PATH="facebook/sam2-hiera-large"
 

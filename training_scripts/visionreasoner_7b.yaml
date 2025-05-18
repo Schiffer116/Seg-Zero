@@ -1,5 +1,5 @@
 data:
-  train_files: Ricky06662/SegZero_multi_object_9k_840
+  train_files: Ricky06662/VisionReasoner_multi_object_1k_840
   val_files: None
   prompt_key: problem
   max_prompt_length: 1300

@@ -4,13 +4,13 @@ set -x
 
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-MODEL_PATH=Qwen/Qwen2.5-VL-7B-Instruct  # replace it with your local file path
+MODEL_PATH=model/Qwen2.5-VL-7B-Instruct  # replace it with your local file path
 
 RUN_NAME=$(basename "$0" .sh)
 
 python3 -m verl.trainer.main \
     config=training_scripts/visionreasoner_7b.yaml \
-    data.train_files=Ricky06662/VisionReasoner_multi_object_7k_840 \
+    data.train_files=data/VisionReasoner_multi_object_1k_840 \
     data.val_files=None \
     worker.actor.model.model_path=${MODEL_PATH} \
     worker.actor.kl_loss_coef=1.0e-2 \

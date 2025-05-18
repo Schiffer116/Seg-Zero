@@ -16,7 +16,7 @@ import matplotlib.pyplot as plt
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--reasoning_model_path", type=str, default="Ricky06662/VisionReasoner-7B")
+    parser.add_argument("--reasoning_model_path", type=str, default="model/VisionReasoner-7B")
     parser.add_argument("--segmentation_model_path", type=str, default="facebook/sam2-hiera-large")
     parser.add_argument("--text", type=str, default="What can I have if I'm thirsty?")
     parser.add_argument("--image_path", type=str, default="./assets/food.webp")
