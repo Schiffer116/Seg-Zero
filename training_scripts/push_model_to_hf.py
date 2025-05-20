@@ -21,9 +21,9 @@ def push_to_hub(
         learning_rate: 学习率
         private: 是否为私有仓库
     """
-    # 检查环境变量
-    if "HUGGING_FACE_HUB_TOKEN" not in os.environ:
-        raise ValueError("请设置 HUGGING_FACE_HUB_TOKEN 环境变量")
+    # # 检查环境变量
+    # if "HUGGING_FACE_HUB_TOKEN" not in os.environ:
+    #     raise ValueError("请设置 HUGGING_FACE_HUB_TOKEN 环境变量")
 
     # 初始化 HF API
     api = HfApi()
@@ -37,25 +37,9 @@ def push_to_hub(
 
     # 创建模型卡片
     readme_content = f"""
-# VisionReasoner-7B
-
-
+# 
 Code: https://github.com/dvlab-research/VisionReasoner
 
-## Description
-
-This is a VisionReasoner-7B model.  It introduces a decoupled architecture consisting of a reasoning model and a segmentation model. The reasoning model interprets user intentions, generates explicit reasoning chains, and produces positional prompts, which are subsequently used by the segmentation model to generate pixel-level masks.
-
-## Usage
-
-```python
-from transformers import AutoModelForCausalLM, AutoTokenizer
-import torch
-
-# load model
-model = AutoModelForCausalLM.from_pretrained("Ricky06662/VisionReasoner-7B")
-tokenizer = AutoTokenizer.from_pretrained("Ricky06662/VisionReasoner-7B")
-```
 """
 
     # 创建临时目录
@@ -104,7 +88,7 @@ def main():
     )
 
 # Usage:
-# python push_to_hub.py \
+# python push_model_to_hub.py \
 #     --model_path "/path/to/your/model" \
 #     --repo_name "your-username/model-name"
 if __name__ == "__main__":

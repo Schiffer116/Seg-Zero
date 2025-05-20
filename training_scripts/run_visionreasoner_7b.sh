@@ -4,7 +4,7 @@ set -x
 
 export VLLM_ATTENTION_BACKEND=XFORMERS
 
-MODEL_PATH=model/Qwen2.5-VL-7B-Instruct  # replace it with your local file path
+MODEL_PATH=pretrained_models/Qwen2.5-VL-7B-Instruct  # replace it with your local file path
 
 RUN_NAME=$(basename "$0" .sh)
 

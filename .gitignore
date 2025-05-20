@@ -179,4 +179,4 @@ reasonseg_eval_results
 tmp_model_upload
 visionmanus_workdir/
 data
-model
+pretrained_models

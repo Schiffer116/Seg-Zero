@@ -1,9 +1,9 @@
 # Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement
 
-The repo is the official implement of **"Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement"**.   
-The repo is also the official training code of **"VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning"**.  
+The repo is the official implement of **"[Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement](https://arxiv.org/abs/2503.06520)"**.   
+The repo is also the official training code of **"[VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning](https://arxiv.org/pdf/2505.12081)"**.  
 
-Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)   
+Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)  [📖 VisionReasoner](https://arxiv.org/pdf/2505.12081)    
 HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
 Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840) 
 [🤗 VisionReasoner-MultiObjects-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
@@ -79,10 +79,10 @@ pip install -e .
 
 
 ## Inference
-Download model using the following scripts:
+Download pretrained models using the following scripts:
 ```bash
-mkdir model
-cd model
+mkdir pretrained_models
+cd pretrained_models
 git lfs install
 git clone https://huggingface.co/Ricky06662/VisionReasoner-7B
 ```
@@ -139,10 +139,10 @@ Download dataset using this script:
 python training_scripts/download_dataset.py
 ```
 
-Download model using the following scripts:
+Download pretrained models using the following scripts:
 ```bash
-mkdir model
-cd model
+mkdir pretrained_models
+cd pretrained_models
 git lfs install
 git clone https://huggingface.co/Qwen/Qwen2.5-VL-7B-Instruct
 ```
