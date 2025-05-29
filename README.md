@@ -3,11 +3,12 @@
 The repo is the official implement of **"[Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement](https://arxiv.org/abs/2503.06520)"**.   
 The repo is also the official training code of **"[VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning](https://arxiv.org/pdf/2505.12081)"**.  
 
-Paper: [📖 Seg-Zero](https://arxiv.org/abs/2503.06520)  [📖 VisionReasoner](https://arxiv.org/pdf/2505.12081)    
+Paper: [📖 Seg-Zero](https://arxiv.org/pdf/2503.06520)  [📖 VisionReasoner](https://arxiv.org/pdf/2505.12081)    
 HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
 Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840) 
 [🤗 VisionReasoner-MultiObjects-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
-Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)  
+Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)   
+Relative Link: [VisionReasoner![[code]](https://img.shields.io/github/stars/dvlab-research/VisionReasoner)](https://github.com/dvlab-research/VisionReasoner)     
 
 Overview of Seg-Zero:
 
@@ -33,6 +34,9 @@ Seg-Zero demonstrates following features:
 [March 8th, 2025] 🔥 Seg-Zero is coming! We have released the code and training data.
 
 ## !!! Attention !!!
+> [!TIP]
+> This operation is risky, please make sure you have backed up the code if you make any changes.  
+
 We made a major update in May. We now support multi-object segmentation. If you'd like to use the previous single-object segmentation, please use the following command to revert to the old version.  
 ```bash
 git reset --hard 77f9ea5887ec7e6abf398ed3cb483c65631c82b7
@@ -196,13 +200,13 @@ Seg-Zero generates several samples, calculates the rewards and then optimizes to
   year         = {2025}
 }
 
-```
-<!-- @misc{liu2025segzero,
-  title        = {Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement},
-  author       = {Liu, Yuqi and Peng, Bohao and Zhong, Zhisheng and Yue, Zihao and Lu, Fanbin and Yu, Bei and Jia, Jiaya},
-  howpublished = {\url{https://github.com/dvlab-research/Seg-Zero}},
+@article{liu2025visionreasoner,
+  title        = {VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning},
+  author       = {Liu, Yuqi and Qu, Tianyuan and Zhong, Zhisheng and Peng, Bohao and Liu, Shu and Yu, Bei and Jia, Jiaya},
+  journal = {arXiv preprint arXiv:2505.12081},
   year         = {2025}
-} -->
+}
+```
 
 ## Acknowledgement
 We would like to thank the following repos for their great work: 
