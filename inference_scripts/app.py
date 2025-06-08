@@ -7,7 +7,7 @@ from infer_function import infer
 
 st.set_page_config(layout="wide")
 
-@st.singleton
+@st.cache_resource
 def load_model():
     reasoning_model_path = "../pretrained_models/VisionReasoner-7B"
     segmentation_model_path = "facebook/sam2-hiera-large"

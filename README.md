@@ -1,14 +1,14 @@
 # Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement
 
-The repo is the official implement of **"[Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement](https://arxiv.org/abs/2503.06520)"**.   
-The repo is also the official training code of **"[VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning](https://arxiv.org/pdf/2505.12081)"**.  
+The repo is the official implement of **"[Seg-Zero: Reasoning-Chain Guided  Segmentation via Cognitive Reinforcement](https://arxiv.org/abs/2503.06520)"**.
+The repo is also the official training code of **"[VisionReasoner: Unified Visual Perception and Reasoning via Reinforcement Learning](https://arxiv.org/pdf/2505.12081)"**.
 
-Paper: [📖 Seg-Zero](https://arxiv.org/pdf/2503.06520)  [📖 VisionReasoner](https://arxiv.org/pdf/2505.12081)    
-HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)  
-Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840) 
-[🤗 VisionReasoner-MultiObjects-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)  
-Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)   
-Relative Link: [VisionReasoner![[code]](https://img.shields.io/github/stars/dvlab-research/VisionReasoner)](https://github.com/dvlab-research/VisionReasoner)     
+Paper: [📖 Seg-Zero](https://arxiv.org/pdf/2503.06520)  [📖 VisionReasoner](https://arxiv.org/pdf/2505.12081)
+HuggingFace Daily: [🤗 Seg-Zero](https://huggingface.co/papers/2503.06520)
+Data: [🤗 RefCOCOg-9K](https://huggingface.co/datasets/Ricky06662/refCOCOg_9k_840)
+[🤗 VisionReasoner-MultiObjects-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)
+Model: [🤗 Seg-Zero-7B](https://huggingface.co/Ricky06662/Seg-Zero-7B)  [🤗 VisionReasoner-7B](https://huggingface.co/Ricky06662/VisionReasoner-7B)
+Relative Link: [VisionReasoner![[code]](https://img.shields.io/github/stars/dvlab-research/VisionReasoner)](https://github.com/dvlab-research/VisionReasoner)
 
 Overview of Seg-Zero:
 
@@ -17,27 +17,27 @@ Overview of Seg-Zero:
 </div>
 
 Seg-Zero demonstrates following features:
-1. Seg-Zero exhibits emergent test-time reasoning ability. It generates a reasoning chain before producing the final segmentation mask. 
+1. Seg-Zero exhibits emergent test-time reasoning ability. It generates a reasoning chain before producing the final segmentation mask.
 2. Seg-Zero is trained exclusively using reinforcement learning, without any explicit supervised reasoning data.
 3. Compared to supervised fine-tuning, our Seg-Zero achieves superior performance on both in-domain and out-of-domain data.
 
 **Highlight Code Features**:
 1. This code is based on the [EasyR1](https://github.com/hiyouga/EasyR1) and [veRL](https://github.com/volcengine/verl), which supports model split during sampling and is more GPU memory friendly.
 2. Supporting both Qwen2-VL and Qwen2.5-VL series models.
-3. Already implementing commonly used rewards in Object Detection and Object Segmentation, including IoU reward and L1 reward. 
+3. Already implementing commonly used rewards in Object Detection and Object Segmentation, including IoU reward and L1 reward.
 
 
 ## News
 
-[May 17th, 2025] 🔥 We release [VisionReasoner](https://github.com/dvlab-research/VisionReasoner)! VisionReasoner supports multi-objects and multi-tasks.  
-[March 11th, 2025] 🔥 [Paper](https://arxiv.org/abs/2503.06520) is coming!   
+[May 17th, 2025] 🔥 We release [VisionReasoner](https://github.com/dvlab-research/VisionReasoner)! VisionReasoner supports multi-objects and multi-tasks.
+[March 11th, 2025] 🔥 [Paper](https://arxiv.org/abs/2503.06520) is coming!
 [March 8th, 2025] 🔥 Seg-Zero is coming! We have released the code and training data.
 
 ## !!! Attention !!!
 > [!TIP]
-> This operation is risky, please make sure you have backed up the code if you make any changes.  
+> This operation is risky, please make sure you have backed up the code if you make any changes.
 
-We made a major update in May. We now support multi-object segmentation. If you'd like to use the previous single-object segmentation, please use the following command to revert to the old version.  
+We made a major update in May. We now support multi-object segmentation. If you'd like to use the previous single-object segmentation, please use the following command to revert to the old version.
 ```bash
 git reset --hard 77f9ea5887ec7e6abf398ed3cb483c65631c82b7
 ```
@@ -73,7 +73,7 @@ Seg-Zero employs a decoupled architecture, including a reasoning model and segme
 ## Installation
 
 ```bash
-git clone https://github.com/dvlab-research/Seg-Zero.git
+git clone https://github.com/Schiffer116/Seg-Zero.git
 cd Seg-Zero
 conda create -n visionreasoner python=3.12
 conda activate visionreasoner
@@ -94,18 +94,18 @@ git clone https://huggingface.co/Ricky06662/VisionReasoner-7B
 > [!TIP]
 > If you encounter issues with connecting to Hugging Face, consider using `export HF_ENDPOINT=https://hf-mirror.com`.
 
-Then run inference using: 
+Then run inference using:
 ```bash
 python inference_scripts/infer_multi_object.py
 ```
-The default question is 
+The default question is
 > "What can I have if I'm thirsty?"
 
 You will get the thinking process in command line, like:
 
 > "The question asks for items that can be consumed if one is thirsty. In the image, there are two glasses that appear to contain beverages, which are the most likely candidates for something to drink. The other items, such as the salad, fruit platter, and sandwich, are not drinks and are not suitable for quenching thirst."
 
-And the mask will be presented in **inference_scripts** folder. 
+And the mask will be presented in **inference_scripts** folder.
 
 <div align=center>
 <img width="98%" src="assets/test_output_multiobject.png"/>
@@ -116,17 +116,17 @@ You can also provide your own image_path and text by:
 python inference_scripts/infer_multi_object.py --image_path "your_image_path" --text "your question text"
 ```
 
-## Evaluation  
+## Evaluation
 
-Evaluation Data: [🤗 ReasonSeg-Test](https://huggingface.co/datasets/Ricky06662/ReasonSeg_test)  [🤗 ReasonSeg-Val](https://huggingface.co/datasets/Ricky06662/ReasonSeg_val)   
+Evaluation Data: [🤗 ReasonSeg-Test](https://huggingface.co/datasets/Ricky06662/ReasonSeg_test)  [🤗 ReasonSeg-Val](https://huggingface.co/datasets/Ricky06662/ReasonSeg_val)
 
 ```bash
 bash evaluation_scripts/eval_reasonseg_visionreasoner.sh
-```  
-Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see the gIoU in your command line.  
+```
+Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see the gIoU in your command line.
 <div align=center>
 <img width="98%" src="assets/val_results.png"/>
-</div> 
+</div>
 
 > [!NOTE]
 > Results in VisionReasoner are evaluated within one checkpoint.  We recommand you to [VisionReasoner](https://github.com/dvlab-research/VisionReasoner) for evaluation on more tasks and more benchmarks.
@@ -137,8 +137,8 @@ Adjusting '--batch_size' in the bash scripts based on your GPU. And you will see
 ## Training
 
 ### 1. GRPO Training
-Training Data: [🤗 MultiObject-1K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_1k_840)  [🤗 MultiObject-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)   
-Download dataset using this script: 
+Training Data: [🤗 MultiObject-1K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_1k_840)  [🤗 MultiObject-7K](https://huggingface.co/datasets/Ricky06662/VisionReasoner_multi_object_7k_840)
+Download dataset using this script:
 ```bash
 python training_scripts/download_dataset.py
 ```
@@ -209,10 +209,10 @@ Seg-Zero generates several samples, calculates the rewards and then optimizes to
 ```
 
 ## Acknowledgement
-We would like to thank the following repos for their great work: 
+We would like to thank the following repos for their great work:
 
 - This work is built upon the [EasyR1](https://github.com/hiyouga/EasyR1) and [veRL](https://github.com/volcengine/verl).
-- This work utilizes models from  [Qwen2-VL](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct), [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) and [SAM2](https://huggingface.co/facebook/sam2-hiera-large). 
+- This work utilizes models from  [Qwen2-VL](https://huggingface.co/Qwen/Qwen2-VL-2B-Instruct), [Qwen2.5-VL](https://huggingface.co/Qwen/Qwen2.5-VL-3B-Instruct) and [SAM2](https://huggingface.co/facebook/sam2-hiera-large).
 
 
 ## Star History
