@@ -16,7 +16,6 @@ def infer(reasoning_model, segmentation_model, processor, prompt, image):
         "i.e., <think> thinking process here </think>" \
         "<answer>{Answer}</answer>"
 
-    image = PILImage.open(image)
     image = image.convert("RGB")
     original_width, original_height = image.size
     resize_size = 840

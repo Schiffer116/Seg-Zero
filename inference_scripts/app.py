@@ -5,9 +5,11 @@ from transformers import Qwen2_5_VLForConditionalGeneration, AutoProcessor
 from sam2.sam2_image_predictor import SAM2ImagePredictor
 from infer_function import infer
 
-@st._dg_singleton
+st.set_page_config(layout="wide")
+
+@st.singleton
 def load_model():
-    reasoning_model_path = "pretrained_models/VisionReasoner-7B"
+    reasoning_model_path = "../pretrained_models/VisionReasoner-7B"
     segmentation_model_path = "facebook/sam2-hiera-large"
 
     reasoning_model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
@@ -27,7 +29,6 @@ def load_model():
 
 
 reasoning_model, segmentation_model, processor = load_model()
-st.set_page_config(layout="wide")
 
 # Layout: Split screen
 left_col, right_col = st.columns([1, 1])
@@ -44,6 +45,8 @@ with left_col:
             image = Image.open(uploaded_file)
     else:
         image = st.camera_input("Take a photo")
+        if image:
+            image = Image.open(image)
 
     # Prompt input
     prompt = st.text_area("Write your prompt here:")
